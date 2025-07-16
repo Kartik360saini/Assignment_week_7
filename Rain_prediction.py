@@ -45,12 +45,12 @@ if st.button("Predict Rain"):
     wind_speed = round(np.random.uniform(0, 30), 2)
     pressure = round(np.random.normal(1013, 10), 2)
 
-    features_df = pd.DataFrame({
+    features_df = pd.DataFrame([{
         'temperature': temperature,
         'humidity': humidity,
         'wind_speed': wind_speed,
         'pressure': pressure
-    })
+    }])
 
     prediction = model.predict(features_df)[0]
     probability = model.predict_proba(features_df)[0][1]
