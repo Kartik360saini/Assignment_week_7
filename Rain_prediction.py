@@ -62,7 +62,7 @@ if st.button("Predict Rain"):
 
     st.write(" Prediction Probability")
     fig, ax = plt.subplots()
-    ax.bar(['No Rain', 'Rain'], prob, color=['skyblue', 'steelblue'])
+    ax.bar(['No Rain', 'Rain'], probability, color=['skyblue', 'steelblue'])
     ax.set_ylabel("Probability")
     ax.set_ylim([0, 1])
     st.pyplot(fig)
