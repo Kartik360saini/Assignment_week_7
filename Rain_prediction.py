@@ -3,9 +3,9 @@ import pandas as pd
 import numpy as np
 from sklearn.linear_model import LogisticRegression
 from datetime import datetime
-from sklearn.metrics import accuracy_score
+import matplotli.pyplot as plt
 
-st.title("🌧️ Rain Prediction by Date (No Function Version)")
+st.title(" Rain Prediction by Date")
 
 np.random.seed(42)
 n_samples = 300
@@ -34,7 +34,7 @@ y = train_data['rain']
 model = LogisticRegression()
 model.fit(X, y)
 
-st.write("Select a date to predict rain (synthetic):")
+st.write("Select a date to predict rain :")
 date_input = st.date_input("Date", value=datetime.today())
 
 if st.button("Predict Rain"):
@@ -55,7 +55,14 @@ if st.button("Predict Rain"):
     prediction = model.predict(features_df)[0]
     probability = model.predict_proba(features_df)[0][1]
 
-    st.write("### 🔍 Generated Weather Features")
+    st.write(" Generated Weather Features")
     st.table(features_df)
 
-    st.success(f"🌦️ Rain prediction for {date_input}: **{'Yes' if prediction == 1 else 'No'}** (Probability: {probability:.2f})")
+    st.success(f" Rain prediction for {date_input}: {'Yes' if prediction == 1 else 'No'} (Probability: {probability:.2f})")
+
+    st.write(" Prediction Probability")
+    fig, ax = plt.subplots()
+    ax.bar(['No Rain', 'Rain'], prob, color=['skyblue', 'steelblue'])
+    ax.set_ylabel("Probability")
+    ax.set_ylim([0, 1])
+    st.pyplot(fig)
