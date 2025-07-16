@@ -53,12 +53,12 @@ if st.button("Predict Rain"):
     }])
 
     prediction = model.predict(features_df)[0]
-    probability = model.predict_proba(features_df)[0][1]
+    probability = model.predict_proba(features_df)[0]
 
     st.write(" Generated Weather Features")
     st.table(features_df)
 
-    st.success(f" Rain prediction for {date_input}: {'Yes' if prediction == 1 else 'No'} (Probability: {probability:.2f})")
+    st.success(f" Rain prediction for {date_input}: {'Yes' if prediction == 1 else 'No'} (Probability: {probability[1]:.2f})")
 
     st.write(" Prediction Probability")
     fig, ax = plt.subplots()
